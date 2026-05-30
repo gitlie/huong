@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huong Truong — Organiser · Facilitator · Artist</title>
+    <meta name="description" content="Huong Truong is a grassroots organiser, training facilitator, artist and former State MP based in Melbourne's west. Available for workshop facilitation, campaign strategy, emcee, graphic recording and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green:  #1a3a2a;
+            --cream:  #f5f0e8;
+            --terra:  #c4623a;
+            --sand:   #e8dcc8;
+            --muted:  #5a6357;
+            --border: rgba(26,58,42,0.12);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--cream);
+            color: var(--green);
+            font-size: 18px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.1rem 2.5rem;
+            background: rgba(245,240,232,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-name {
+            font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600;
+            color: var(--green); text-decoration: none; letter-spacing: -0.01em;
+        }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.82rem; color: var(--muted); text-decoration: none;
+            letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--terra); }
+        .nav-cta {
+            background: var(--terra) !important; color: white !important;
+            padding: 0.5rem 1.3rem; border-radius: 2rem; font-size: 0.82rem !important;
+            letter-spacing: 0.04em !important;
+        }
+        .nav-cta:hover { opacity: 0.88; color: white !important; }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid; grid-template-columns: 1fr 1fr;
+            padding-top: 4rem;
+        }
+        .hero-content {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 5rem 3.5rem 5rem 2.5rem;
+        }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: 2rem; font-style: italic;
+        }
+        .hero-tag::before {
+            content: ''; width: 2rem; height: 1px; background: var(--terra);
+        }
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3.8rem, 6.5vw, 6.2rem);
+            font-weight: 800; line-height: 0.93;
+            letter-spacing: -0.03em; color: var(--green);
+            margin-bottom: 1.6rem;
+        }
+        h1 em { font-style: italic; color: var(--terra); }
+        .hero-sub {
+            font-size: 1.15rem; color: var(--muted); max-width: 40ch;
+            margin-bottom: 2.8rem; line-height: 1.75;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.85rem 2rem; border-radius: 3rem;
+            text-decoration: none; font-size: 0.95rem; transition: all 0.22s;
+        }
+        .btn-primary { background: var(--green); color: var(--cream); }
+        .btn-primary:hover { background: var(--terra); }
+        .btn-outline {
+            color: var(--green); border: 1.5px solid var(--green);
+        }
+        .btn-outline:hover { background: var(--green); color: var(--cream); }
+
+        /* photo panel */
+        .hero-image {
+            background: var(--sand); position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-image::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 30% 70%, rgba(196,98,58,0.18) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(26,58,42,0.12) 0%, transparent 55%);
+        }
+        .photo-placeholder {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 1.2rem; text-align: center;
+        }
+        .photo-ring {
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 2px solid rgba(196,98,58,0.35);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .photo-initials {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: var(--terra);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Fraunces', serif; font-size: 2.8rem;
+            font-weight: 800; color: var(--cream);
+        }
+        .photo-note {
+            font-size: 0.78rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--muted); opacity: 0.7;
+        }
+
+        /* ─── STRIP ─── */
+        .strip {
+            background: var(--green); color: var(--cream);
+            padding: 1.4rem 0; overflow: hidden; white-space: nowrap;
+        }
+        .strip-inner { display: inline-flex; animation: marquee 28s linear infinite; }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .strip-item {
+            font-family: 'Fraunces', serif; font-style: italic;
+            font-size: 1.05rem; padding: 0 2rem;
+            border-right: 1px solid rgba(245,240,232,0.18);
+        }
+
+        /* ─── SHARED SECTION STYLES ─── */
+        .section { padding: 6rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+        .section-bg-sand { background: var(--sand); }
+        .section-bg-green { background: var(--green); color: var(--cream); }
+
+        .label {
+            font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: 0.8rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .label::after {
+            content: ''; width: 2rem; height: 1px;
+            background: var(--terra); opacity: 0.4;
+        }
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 600; line-height: 1.1;
+            letter-spacing: -0.02em; margin-bottom: 3rem;
+        }
+
+        /* ─── ABOUT ─── */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: start;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem; font-size: 1.05rem;
+            color: var(--green); line-height: 1.82;
+        }
+        .about-text p:last-child { margin-bottom: 0; }
+        .about-text em { color: var(--terra); font-style: italic; }
+
+        .about-card {
+            background: var(--green); color: var(--cream);
+            padding: 2.5rem; border-radius: 2px;
+        }
+        .about-card h3 {
+            font-family: 'Fraunces', serif; font-style: italic;
+            font-size: 1.3rem; color: var(--sand); margin-bottom: 1.5rem;
+        }
+        .career-list { list-style: none; }
+        .career-list li {
+            display: flex; gap: 0.9rem; margin-bottom: 1rem;
+            font-size: 0.93rem; line-height: 1.55;
+            color: rgba(245,240,232,0.82);
+        }
+        .career-list li::before { content: '→'; color: var(--terra); flex-shrink: 0; }
+
+        /* ─── SERVICES ─── */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+        }
+        .service-card {
+            background: var(--cream); padding: 2.5rem;
+            transition: background 0.25s, color 0.25s; cursor: default;
+        }
+        .service-card:hover { background: var(--green); }
+        .service-card:hover .s-num,
+        .service-card:hover .s-desc { color: rgba(245,240,232,0.6); }
+        .service-card:hover h3 { color: var(--cream); }
+
+        .s-num {
+            font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: 1.5rem;
+        }
+        .service-card h3 {
+            font-family: 'Fraunces', serif; font-size: 1.25rem;
+            font-weight: 600; margin-bottom: 0.7rem;
+            line-height: 1.2; color: var(--green); transition: color 0.25s;
+        }
+        .s-desc {
+            font-size: 0.93rem; color: var(--muted);
+            line-height: 1.65; transition: color 0.25s;
+        }
+
+        /* ─── PROOF ─── */
+        .cases { border-top: 1px solid var(--border); }
+        .case {
+            display: grid; grid-template-columns: 3rem 1fr 10rem;
+            gap: 2.5rem; align-items: start;
+            padding: 3rem 0; border-bottom: 1px solid var(--border);
+        }
+        .case-num {
+            font-family: 'Fraunces', serif; font-size: 0.9rem;
+            color: var(--muted); padding-top: 0.2rem;
+        }
+        .case-tag {
+            font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--terra); font-style: italic; margin-bottom: 0.6rem;
+        }
+        .case-content h3 {
+            font-family: 'Fraunces', serif; font-size: 1.45rem;
+            font-weight: 600; line-height: 1.2; margin-bottom: 0.8rem;
+        }
+        .case-content p {
+            font-size: 0.98rem; color: var(--muted);
+            max-width: 62ch; line-height: 1.72;
+        }
+        .case-metric { text-align: right; padding-top: 0.2rem; }
+        .metric-big {
+            font-family: 'Fraunces', serif; font-size: 2.6rem;
+            font-weight: 800; color: var(--terra); line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        .metric-sm { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+
+        /* ─── CONTACT ─── */
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 6rem; align-items: center;
+        }
+        .contact-label { color: rgba(245,240,232,0.45); }
+        .contact-label::after { background: rgba(245,240,232,0.25); }
+        .contact-headline {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            font-weight: 700; line-height: 1.05;
+            letter-spacing: -0.02em; margin-bottom: 1.5rem;
+        }
+        .contact-headline em { font-style: italic; color: var(--terra); }
+        .contact-body {
+            font-size: 1.08rem; color: rgba(245,240,232,0.65);
+            line-height: 1.75; margin-bottom: 2.5rem;
+        }
+        .contact-links { display: flex; flex-direction: column; gap: 1.6rem; }
+        .contact-link-label {
+            font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(245,240,232,0.38); margin-bottom: 0.2rem;
+        }
+        .contact-links a {
+            color: var(--cream); text-decoration: none;
+            font-family: 'Fraunces', serif; font-size: 1.25rem;
+            transition: color 0.2s;
+        }
+        .contact-links a:hover { color: var(--terra); }
+        .contact-based {
+            color: var(--cream); font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+        }
+
+        .process-card {
+            background: rgba(245,240,232,0.06);
+            border: 1px solid rgba(245,240,232,0.12);
+            padding: 2.5rem; border-radius: 2px;
+        }
+        .process-card h3 {
+            font-family: 'Fraunces', serif; font-style: italic;
+            font-size: 1.15rem; color: var(--sand); margin-bottom: 1.5rem;
+        }
+        .process-steps { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+        .process-steps li {
+            display: flex; gap: 1rem; align-items: start;
+            font-size: 0.93rem; color: rgba(245,240,232,0.72); line-height: 1.55;
+        }
+        .step-n {
+            font-family: 'Fraunces', serif; font-size: 1.2rem;
+            font-weight: 700; color: var(--terra); flex-shrink: 0; min-width: 1.4rem;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--green);
+            border-top: 1px solid rgba(245,240,232,0.08);
+            padding: 2rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            color: rgba(245,240,232,0.35); font-size: 0.82rem;
+        }
+        footer a { color: rgba(245,240,232,0.35); text-decoration: none; }
+        footer a:hover { color: var(--terra); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-image { height: 55vw; }
+            .hero-content { padding: 3rem 1.5rem; }
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .case { grid-template-columns: 2.5rem 1fr; gap: 1.5rem; }
+            .case-metric { display: none; }
+            .section { padding: 4rem 1.5rem; }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links li:not(:last-child) { display: none; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-name">Huong Truong</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#proof">Proof</a></li>
+        <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">Available for work · Naarm &amp; beyond</span>
+        <h1>See a need.<br><em>Find a way.</em></h1>
+        <p class="hero-sub">
+            Huong Truong — organiser, facilitator, artist, and committed trouble-maker based in Melbourne's west. I bring 20+ years of hard-earned skill and a gift for getting the right people in the room.
+        </p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Work with me</a>
+            <a href="#proof" class="btn btn-outline">See my work</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <div class="photo-placeholder">
+            <div class="photo-ring">
+                <div class="photo-initials">HT</div>
+            </div>
+            <span class="photo-note">Photo coming soon</span>
+        </div>
+    </div>
+</div>
+
+<!-- MARQUEE STRIP -->
+<div class="strip">
+    <div class="strip-inner">
+        <span class="strip-item">Workshop Facilitation</span>
+        <span class="strip-item">Campaign Strategy</span>
+        <span class="strip-item">Emcee — Bilingual</span>
+        <span class="strip-item">Graphic Recording</span>
+        <span class="strip-item">Illustration &amp; Art</span>
+        <span class="strip-item">Organising Consultancy</span>
+        <!-- duplicate for seamless loop -->
+        <span class="strip-item">Workshop Facilitation</span>
+        <span class="strip-item">Campaign Strategy</span>
+        <span class="strip-item">Emcee — Bilingual</span>
+        <span class="strip-item">Graphic Recording</span>
+        <span class="strip-item">Illustration &amp; Art</span>
+        <span class="strip-item">Organising Consultancy</span>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+    <div class="section">
+        <div class="label">About</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm the eldest daughter of Vietnamese boat people, born and raised in public housing and public schools across the western suburbs of Naarm. I know what it is to rely on public systems — and to fight to make them work for everyone.
+                </p>
+                <p>
+                    For over two decades, I've been bringing together communities to name their needs, tell their stories, and take meaningful collective action. I've done this as a union organiser on poultry factory floors, as a Greens MP navigating family violence legislation, as a bilingual grassroots trainer equipping young people of colour to organise for climate justice, and as an artist capturing what happens in rooms where change is being made.
+                </p>
+                <p>
+                    My career has been anything but linear — and that's the point. The breadth of my experience across government, unions, campaigns, community, and the arts means I bring something most people can't: the ability to work fluently across all of it.
+                </p>
+                <p>
+                    I have ADHD, and I'm committed to making more possible for folks like us. I'm a single mum to Grace (15) and Teddy (12). I live in Sunshine North. I speak Vietnamese and English fluently. I make things.
+                </p>
+                <p><em>Grassroots or bust.</em></p>
+            </div>
+            <div class="about-card">
+                <h3>A career you can't quite categorise</h3>
+                <ul class="career-list">
+                    <li>Environmental Policy Officer → Sustainability Coordinator, Brimbank Council (2006–2018)</li>
+                    <li>Greens Upper House Member of Parliament, Western Metro (2018)</li>
+                    <li>Bilingual Union Organiser, United Workers Union (2019)</li>
+                    <li>Statewide &amp; National Grassroots Organiser, Australian Greens (2021–2025)</li>
+                    <li>Training Facilitator, Democracy in Colour, VietSpeak &amp; others (ongoing)</li>
+                    <li>Greens Federal Candidate for Fraser (2025)</li>
+                    <li>Digital Communications Officer, Friends of the Earth (present)</li>
+                    <li>Freelance facilitator, artist &amp; organising consultant (ongoing)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section-bg-sand" id="services">
+    <div class="section">
+        <div class="label">What I do</div>
+        <h2>I bring people together.<br>I make things happen.</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="s-num">01</div>
+                <h3>Workshop Facilitation &amp; Design</h3>
+                <p class="s-desc">Bespoke workshops on grassroots organising, activist burnout, power mapping, radical feedback, public narrative, and consensus decision-making. In-person, online, or hybrid.</p>
+            </div>
+            <div class="service-card">
+                <div class="s-num">02</div>
+                <h3>Campaign &amp; Organisational Strategy</h3>
+                <p class="s-desc">Co-authoring org strategies, theory of change, campaign design and evaluation. Done this for Democracy in Colour, the Green Institute, election campaigns, and grassroots collectives.</p>
+            </div>
+            <div class="service-card">
+                <div class="s-num">03</div>
+                <h3>Emcee — Bilingual (EN/VI)</h3>
+                <p class="s-desc">Confident emcee for events intimate or enormous — from a kitchen table of six to a public forum of thousands. Bilingual in English and Vietnamese. I'll say what is worth saying, for this moment and this gathering.</p>
+            </div>
+            <div class="service-card">
+                <div class="s-num">04</div>
+                <h3>Graphic Recording</h3>
+                <p class="s-desc">Live visual capture of meetings, workshops, and events. I translate what's said in the room into something people can see, share, and remember.</p>
+            </div>
+            <div class="service-card">
+                <div class="s-num">05</div>
+                <h3>Illustration &amp; Art Sessions</h3>
+                <p class="s-desc">Watercolour (Australian florals), pen and ink illustration, and group or individual art sessions — all materials supplied. I'll come to you, or we can meet at one of my favourite cafes in the west.</p>
+            </div>
+            <div class="service-card">
+                <div class="s-num">06</div>
+                <h3>Grassroots Organising Consultancy</h3>
+                <p class="s-desc">Movement building advice, volunteer engagement systems, campaign structure, and organiser capacity building for grassroots groups and organisations at any stage.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PROOF -->
+<div id="proof">
+    <div class="section">
+        <div class="label">Proof of work</div>
+        <h2>Real results, real people,<br>real rooms.</h2>
+        <div class="cases">
+            <div class="case">
+                <span class="case-num">01</span>
+                <div class="case-content">
+                    <div class="case-tag">Local Government · 2011–2018</div>
+                    <h3>Award-winning sustainability team, Brimbank Council</h3>
+                    <p>Led a 5-person team of community educators and project officers, managing a $1.4M annual operational budget and $3.5M in capital works. Our Brimbank Gems recycling program won a Sustainability Victoria award and was replicated by councils across the country.</p>
+                </div>
+                <div class="case-metric">
+                    <div class="metric-big">$4.9M</div>
+                    <div class="metric-sm">annual budget managed, end to end</div>
+                </div>
+            </div>
+            <div class="case">
+                <span class="case-num">02</span>
+                <div class="case-content">
+                    <div class="case-tag">Election Campaign · 2024–2025</div>
+                    <h3>2nd highest Greens swing in the country, Fraser Federal</h3>
+                    <p>As Greens Federal Candidate for Fraser, achieved the second highest swing for the Greens across the entire country. Built a social media presence larger than the incumbent Labor MP's in under 12 months, and coordinated the We Vote for Palestine campaign — organising 30+ solidarity groups across VIC and NSW for local council elections.</p>
+                </div>
+                <div class="case-metric">
+                    <div class="metric-big">#2</div>
+                    <div class="metric-sm">Greens swing nationwide, 2025</div>
+                </div>
+            </div>
+            <div class="case">
+                <span class="case-num">03</span>
+                <div class="case-content">
+                    <div class="case-tag">Training &amp; Facilitation · 2022–2025</div>
+                    <h3>Democracy in Colour Climate Justice Fellowship</h3>
+                    <p>Developed curriculum and trained cohorts of young people of colour from across Australia to organise for climate and racial justice in their home communities. Topics included grassroots organising 101, power mapping, 'loving corrections' (radical feedback), activist burnout, and consensus decision-making. Delivered nationally in 2022, 2023, and 2025.</p>
+                </div>
+                <div class="case-metric">
+                    <div class="metric-big">3×</div>
+                    <div class="metric-sm">national programs designed &amp; delivered</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-bg-green" id="contact">
+    <div class="section">
+        <div class="contact-grid">
+            <div>
+                <div class="label contact-label">Get in touch</div>
+                <h2 class="contact-headline">
+                    Let's figure out<br>
+                    <em>what we can build</em><br>
+                    together.
+                </h2>
+                <p class="contact-body">
+                    I'm interested in work that makes good on a clear theory of change. Tell me what you're trying to do — I'll tell you honestly whether I can help.
+                </p>
+                <div class="contact-links">
+                    <div>
+                        <div class="contact-link-label">Email</div>
+                        <a href="mailto:huongtruong@gmail.com">huongtruong@gmail.com</a>
+                    </div>
+                    <div>
+                        <div class="contact-link-label">Phone / Text</div>
+                        <a href="tel:+61401560820">0401 560 820</a>
+                    </div>
+                    <div>
+                        <div class="contact-link-label">Based in</div>
+                        <span class="contact-based">Sunshine North, Naarm (Melbourne)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="process-card">
+                <h3>How it works</h3>
+                <ol class="process-steps">
+                    <li>
+                        <span class="step-n">1</span>
+                        <span>Get in touch by email or phone with any and all details about the work you'd like us to do together.</span>
+                    </li>
+                    <li>
+                        <span class="step-n">2</span>
+                        <span>We do a 20-minute briefing call to make sure we're a good fit and we're clear about expectations.</span>
+                    </li>
+                    <li>
+                        <span class="step-n">3</span>
+                        <span>I send you a proposal. We either agree, negotiate the details, or leave it there — no pressure.</span>
+                    </li>
+                    <li>
+                        <span class="step-n">4</span>
+                        <span>We do the work. We do it well. We make it count.</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <span>© 2026 Huong Truong · Sunshine North, Naarm</span>
+    <span>
+        <a href="mailto:huongtruong@gmail.com">huongtruong@gmail.com</a>
+        &nbsp;·&nbsp;
+        <a href="tel:+61401560820">0401 560 820</a>
+    </span>
+</footer>
+
+</body>
+</html>
